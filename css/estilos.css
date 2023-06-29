@@ -1,0 +1,185 @@
+body {
+    padding: 0px;
+    margin: 0;
+}
+
+*::after,
+*::before {
+    padding: 0px;
+    margin: 0;
+}
+
+.contenedor {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-rows: 60px repeat(3, 1fr) */
+    /* repeat(4, 1fr) */
+    ;
+    grid-template-areas:
+        "area1 area1 area2"
+        "area3 area3 area2"
+        "area3 area3 area2"
+        'area4 area4 area4';
+    gap: 32px;
+}
+
+.ele1 {
+    background-color: crimson;
+    grid-area: area1;
+    display: flex;
+    gap: 32px;
+}
+
+.ele2 {
+    background-color: steelblue;
+    grid-area: area2;
+}
+
+.ele3 {
+    background-color: darkgreen;
+    grid-area: area3;
+}
+
+.ele4 {
+    background-color: gray;
+    grid-area: area4;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 36px;
+    padding: 20px 0;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+img {
+    height: 50px;
+}
+
+input#menu {
+    opacity: 0;
+}
+
+.grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min(100%, 200px));
+    gap: 32px;
+    /* align-content: center; */
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.grilla img {
+    width: 100%;
+    height: auto;
+}
+
+.grilla div {
+    /* margin: 0 auto; */
+    /* width: 100%; */
+    text-align: center;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+
+figure::before {
+    content: "";
+    display: grid;
+    background-image: linear-gradient(to top, transparent, rgba(128, 128, 128, 0.616));
+    transform: translateY(0);
+    position: absolute;
+    inset: 0;
+    /* height: 300px; */
+}
+
+figure:hover::after,
+figure:active::after {
+    transform: translateY(0);
+}
+
+figure::after {
+    content: attr(alt);
+    display: grid;
+    inset: 0;
+    position: absolute;
+    background: #ff0000a6;
+    color: white;
+    font-size: 2rem;
+    place-content: center;
+    transform: translateY(100%);
+    cursor: pointer;
+    transition: transform .2s;
+    /* height: 300px; */
+}
+
+figure img::after {
+    content: attr(alt);
+    display: block;
+    /* Estilos adicionales aquí */
+}
+
+
+@media screen and (max-width:768px) {
+
+    .ele1 {
+        display: block;
+        gap: 0;
+        /*  height: 50px; */
+    }
+
+    /* "area2 area2 area2" */
+    .contenedor {
+        grid-template-areas:
+            "area1 area1 area1"
+            "area3 area3 area3"
+            "area3 area3 area3"
+            'area4 area4 area4';
+        gap: 0px;
+    }
+
+    img {
+        width: 100%;
+        height: 50px;
+        object-fit: contain;
+    }
+
+    /* .ele1:has(#menu:checked){
+        grid-template-rows: 120px repeat(3, 1fr);
+        height: 103px;
+    } */
+
+    #menu+nav {
+        display: none;
+    }
+
+    #menu:checked+nav {
+        display: block;
+    }
+
+    #menu:not(:checked)+nav {
+        display: none;
+    }
+
+
+
+
+    input#menu {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        height: 50px;
+    }
+
+}
